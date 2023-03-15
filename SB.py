@@ -89,7 +89,7 @@ else:
         # create the account
         create_account()
 
-import requests
+
 
 url = "http://127.0.0.1:5000/api/v1/accounts"
 
@@ -130,3 +130,4 @@ response = requests.request("POST", url, data=payload, headers=headers)
 
 print(response.text)
 
+#!/user/bin/env python3
