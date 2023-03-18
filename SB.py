@@ -1,132 +1,232 @@
-print("Hello World")
-# the program will store the email and password in a file
-# the program will check if the email and password are correct
-# the program will allow the user to sign in if the email and password are correct
-# the program will not allow the user to sign in if the email and password are not correct
-# the program will allow the user to create an account if the email is not already in the file
-# the program will not allow the user to create an account if the email is already in the file
+import random
 
-# import the modules
-import os
-import sys
-import time
+def login_generator(first_name, last_name):
+    login = first_name[0] + last_name[:7]
+    return login
 
+def password_generator(login):
+    password = ""
+    for i in range(0, len(login)):
+        password += str(random.randint(0, 9))
+    return password
 
-# create the file
-def create_file():
-    # create the file
-    file = open("accounts.txt", "w")
-    # close the file
-    file.close()
+def main():
+    first_name = input("Enter your first name: ")
+    last_name = input("Enter your last name: ")
+    login = login_generator(first_name, last_name)
+    password = password_generator(login)
+    print("Your login is: " + login)
+    print("Your password is: " + password)
+import json
+filename = 'username.json'
 
-
-# create the account
-def create_account():
-    # ask the user for their email
-    email = input("Enter your email: ")
-    # ask the user for their password
-    password = input("Enter your password: ")
-    # open the file
-    file = open("accounts.txt", "a")
-    # write the email and password to the file
-    file.write(email + " " + password + "\n")
-    # close the file
-    file.close()
-    # tell the user that their account has been created
-    print("Your account has been created")
-
-
-# sign in
-def sign_in():
-    # ask the user for their email
-    email = input("Enter your email: ")
-    # ask the user for their password
-    password = input("Enter your password: ")
-    # open the file
-    file = open("accounts.txt", "r")
-    # read the file
-    lines = file.readlines()
-    # close the file
-    file.close()
-    # check if the email and password are correct
-    for line in lines:
-        # split the line
-        line = line.split()
-        # check if the email and password are correct
-        if email == line[0] and password == line[1]:
-            # tell the user that they have signed in
-            print("You have signed in")
-            # exit the program
-            sys.exit()
-    # tell the user that the email or password is incorrect
-    print("The email or password is incorrect")
-
-
-# check if the file exists
-if os.path.exists("accounts.txt"):
-    # ask the user if they want to create an account or sign in
-    choice = input("Do you want to create an account or sign in? ")
-    # check if the user wants to create an account
-    if choice == "create an account":
-        # create the account
-        create_account()
-    # check if the user wants to sign in
-    elif choice == "sign in":
-        # sign in
-        sign_in()
-    # check if the user entered something else
-    else:
-        # tell the user that they entered something else
-        print("You entered something else")
-# check if the file does not exist
+try:
+    with open(filename) as f_obj:
+        username = json.load(f_obj)
+except FileNotFoundError:
+    username = input("What is your name? ")
+    with open(filename, 'w') as f_obj:
+        json.dump(username, f_obj)
+        print("We'll remember you when you come back, " + username + "!")
 else:
-    # create the file
-    create_file()
-    # ask the user if they want to create an account or sign in
-    choice = input("Do you want to create an account or sign in? ")
-    # check if the user wants to create an account
-    if choice == "create an account":
-        # create the account
-        create_account()
+    print("Welcome back, " + username + "!")
 
-import requests
+main()
+print("Hello, user!")
+import random
 
-url = "http://127.0.0.1:5000/api/v1/accounts"
+num1 = random.randint(0, 9)
+num2 = random.randint(0, 9)
 
-payload = "{\n\t\"username\": \"test\",\n\t\"password\": \"test\"\n}"
-headers = {
-    'Content-Type': "application/json",
-    'cache-control': "no-cache",
-    'Postman-Token': "d9f9f9f9-f9f9-f9f9-f9f9-f9f9f9f9f9f9"
-}
+print('What is ' + str(num1) + ' + ' + str(num2) + '?')
+answer = input()
 
-response = requests.request("POST", url, data=payload, headers=headers)
+if answer == str(num1 + num2):
+    print('Correct!')
+else:
+    print('Nope! The answer is ' + str(num1 + num2))
+import random
 
-print(response.text)
+# generate two random numbers
+num1 = random.randint(0, 9)
+num2 = random.randint(0, 9)
 
-url = "http://127.0.0.1:5000/api/v1/accounts/test/university"
+# prompt the user to enter an answer
+answer = eval(input("What is " + str(num1) + " + " + str(num2) + "? "))
 
-payload = "{\n\t\"university\": \"University of Florida\"\n}"
-headers = {
-    'Content-Type': "application/json",
-    'cache-control': "no-cache",
-    'Postman-Token': "d9f9f9f9-f9f9-f9f9-f9f9-f9f9f9f9f9f9"
-}
+# display result
+print(num1, "+", num2, "=", answer, "is", num1 + num2 == answer)
+import random
 
-response = requests.request("POST", url, data=payload, headers=headers)
+# generate two random numbers
+num1 = random.randint(0, 9)
+num2 = random.randint(0, 9)
 
-print(response.text)
+# prompt the user to enter an answer
+answer = eval(input("What is " + str(num1) + " + " + str(num2) + "? "))
 
-url = "http://127.0.0.1:5000/api/v1/accounts/test/major"
+# display result
+print(num1, "+", num2, "=", answer, "is", num1 + num2 == answer)
+import random
 
-payload = "{\n\t\"major\": \"Computer Science\"\n}"
-headers = {
-    'Content-Type': "application/json",
-    'cache-control': "no-cache",
-    'Postman-Token': "d9f9f9f9-f9f9-f9f9-f9f9-f9f9f9f9f9f9"
-}
+# generate two random numbers
+num1 = random.randint(0, 9)
+num2 = random.randint(0, 9)
 
-response = requests.request("POST", url, data=payload, headers=headers)
+# prompt the user to enter an answer
+answer = eval(input("What is " + str(num1) + " + " + str(num2) + "? "))
 
-print(response.text)
+# display result
+print(num1, "+", num2, "=", answer, "is", num1 + num2 == answer)
+import random
+
+# generate two random numbers
+num1 = random.randint(0, 9)
+num2 = random.randint(0, 9)
+
+# prompt the user to enter an answer
+answer = eval(input("What is " + str(num1) + " + " + str(num2) + "? "))
+
+import random
+
+# generate two random numbers
+num1 = random.randint(0, 9)
+num2 = random.randint(0, 9)
+
+# prompt the user to enter an answer
+answer = eval(input("What is " + str(num1) + " + " + str(num2) + "? "))
+
+# display result
+print(num1, "+", num2, "=", answer, "is", num1 + num2 == answer)
+import random
+
+# generate two random numbers
+num1 = random.randint(0, 9)
+num2 = random.randint(0, 9)
+
+# prompt the user to enter an answer
+answer = eval(input("What is " + str(num1) + " + " + str(num2) + "? "))
+
+# display result
+print(num1, "+", num2, "=", answer, "is", num1 + num2 == answer)
+import random
+
+# generate two random numbers
+num1 = random.randint(0, 9)
+num2 = random.randint(0, 9)
+
+# prompt the user to enter an answer
+answer = eval(input("What is " + str(num1) + " + " + str(num2) + "? "))
+
+# display result
+print(num1, "+", num2, "=", answer, "is", num1 + num2 == answer)
+print("Hello, StudyBuddy here. Do you need help?")
+
+answer = input()
+
+if answer == "yes":
+    print("I can help you with that.")
+else:
+    print("okay, let's continue.")
+print("Do you want to take a quiz?")
+answer = input()
+
+while answer == "yes":
+    print("Here is a quiz:")
+    print("What is the capital of Alaska?")
+    print("1. Melbourne")
+    print("2. Anchorage")
+    print("3. Juneau")
+
+    answer = input("Type the number of your answer: ")
+
+    if answer == "3":
+        print("That is correct!")
+    else:
+        print("Sorry, that is incorrect.")
+
+print("Awesome! Let's do another quiz.")
+answer = input()
+import random
+
+# generate two random numbers
+num1 = random.randint(0, 9)
+num2 = random.randint(0, 9)
+
+# prompt the user to enter an answer
+answer = eval(input("What is " + str(num1) + " + " + str(num2) + "? "))
+
+print("You're doing a great job!")
+print("Rate your experience from 1 to 10")
+
+rating = input()
+
+if rating == "10":
+    print("Thank you for your feedback")
+elif rating == "9":
+    print("Thank you for your feedback")
+elif rating == "8":
+    print("Thank you for your feedback")
+elif rating == "7":
+    print("Thank you for your feedback")
+elif rating == "6":
+    print("Thank you for your feedback")
+elif rating == "5":
+    print("Thank you for your feedback")
+elif rating == "4":
+    print("Thank you for your feedback")
+elif rating == "3":
+    print("Thank you for your feedback")
+elif rating == "2":
+    print("Thank you for your feedback")
+elif rating == "1":
+    print("Thank you for your feedback")
+else:
+    print("Invalid input")
+while True:
+    print("Would you like to continue?")
+    answer = input()
+    if answer == "no":
+        break
+    if answer == "yes":
+        print("Okay, let's do another quiz.")
+        break
+import random
+
+# generate two random numbers
+num1 = random.randint(0, 9)
+num2 = random.randint(0, 9)
+
+# prompt the user to enter an answer
+answer = eval(input("What is " + str(num1) + " + " + str(num2) + "? "))
+
+# display result
+print(num1, "+", num2, "=", answer, "is", num1 + num2 == answer)
+import random
+
+num1 = random.randint(0, 9)
+num2 = random.randint(0, 9)
+
+print('What is ' + str(num1) + ' + ' + str(num2) + '?')
+answer = input()
+
+if answer == str(num1 + num2):
+    print('Correct!')
+else:
+    print('Nope! The answer is ' + str(num1 + num2))
+import random
+
+num1 = random.randint(0, 9)
+num2 = random.randint(0, 9)
+
+print('What is ' + str(num1) + ' + ' + str(num2) + '?')
+answer = input()
+
+if answer == str(num1 + num2):
+    print('Correct!')
+else:
+    print('Nope! The answer is ' + str(num1 + num2))
+
+
+
 
