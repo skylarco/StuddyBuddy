@@ -226,5 +226,62 @@ if answer == str(num1 + num2):
     print('Correct!')
 else:
     print('Nope! The answer is ' + str(num1 + num2))
-# Google App Engine generated folder
-appengine-generated/
+# calculate score_value
+score_value = 85.3
+
+# calculate score out of 100
+score = round(score_value * 100)
+
+# print score
+print("Your score is:", score, "out of 100.")
+import socket
+
+print("Hello, StudyBuddy here. Do you want to connect to a peer?")
+
+answer = input()
+
+if answer == "yes":
+    print("Great! Let me connect you.")
+
+    print("Welcome to the math problem solver!")
+    print("What kind of problem do you need help with?")
+
+    while True:
+        problem_type = input("Enter the type of problem (addition/subtraction/multiplication/division): ")
+
+        if problem_type == "addition":
+            num1 = int(input("Enter the first number: "))
+            num2 = int(input("Enter the second number: "))
+            result = num1 + num2
+            print("The sum of", num1, "and", num2, "is:", result)
+        elif problem_type == "subtraction":
+            num1 = int(input("Enter the first number: "))
+            num2 = int(input("Enter the second number: "))
+            result = num1 - num2
+            print("The difference between", num1, "and", num2, "is:", result)
+        elif problem_type == "multiplication":
+            num1 = int(input("Enter the first number: "))
+            num2 = int(input("Enter the second number: "))
+            result = num1 * num2
+            print("The product of", num1, "and", num2, "is:", result)
+        elif problem_type == "division":
+            num1 = int(input("Enter the numerator: "))
+            num2 = int(input("Enter the denominator: "))
+            result = num1 / num2
+            print("The quotient of", num1, "and", num2, "is:", result)
+        else:
+            print("Invalid problem type, please try again.")
+
+        answer = input("Do you need help with another problem? (yes/no): ")
+
+        if answer.lower() == "no":
+            print("Thanks for using the math problem solver!")
+            break
+
+
+
+else:
+    print("Okay, let's continue.")
+print("Thanks for playing the quiz!")
+print("Don't forget to study!")
+print("Have a great day!")
